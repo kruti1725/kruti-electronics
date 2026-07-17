@@ -13,18 +13,17 @@
 
         <!-- Mobile Menu -->
         <button
-            class="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarMenu">
+    class="navbar-toggler"
+    type="button"
+    (click)="toggleMenu()">
 
-            <span class="navbar-toggler-icon"></span>
+    <span class="navbar-toggler-icon"></span>
 
-        </button>
+</button>
 
-        <div
-            class="collapse navbar-collapse"
-            id="navbarMenu">
+       <div
+    class="collapse navbar-collapse"
+    [class.show]="menuOpen">
 
             <ul class="navbar-nav ms-auto align-items-lg-center">
 
@@ -34,9 +33,10 @@
                     *ngIf="isLoggedIn()">
 
                     <a
-                        class="nav-link"
-                        routerLink="/dashboard"
-                        routerLinkActive="active">
+    class="nav-link"
+    routerLink="/dashboard"
+    routerLinkActive="active"
+    (click)="closeMenu()">
 
                         🏠 Dashboard
 
@@ -50,13 +50,14 @@
                     *ngIf="isLoggedIn()">
 
                     <a
-                        class="nav-link"
-                        routerLink="/add-receipt"
-                        routerLinkActive="active">
+class="nav-link"
+routerLink="/add-receipt"
+routerLinkActive="active"
+(click)="closeMenu()">
 
-                        ➕ Add Receipt
+➕ Add Receipt
 
-                    </a>
+</a>
 
                 </li>
 
@@ -66,13 +67,14 @@
                     *ngIf="isLoggedIn()">
 
                     <a
-                        class="nav-link"
-                        routerLink="/all-receipts"
-                        routerLinkActive="active">
+class="nav-link"
+routerLink="/all-receipts"
+routerLinkActive="active"
+(click)="closeMenu()">
 
-                        📋 All Receipts
+📋 All Receipts
 
-                    </a>
+</a>
 
                 </li>
 
@@ -99,7 +101,7 @@
                     <a
                         class="nav-link logout"
                         href="javascript:void(0)"
-                        (click)="logout()">
+                        (click)="closeMenu(); logout()">
 
                         🚪 Logout
 

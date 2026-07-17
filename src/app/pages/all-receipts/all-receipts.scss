@@ -379,33 +379,68 @@ tbody tr td[colspan]{
     padding-top:40px;
 
 }
+/* ==========================================
+   Mobile Table Scroll
+========================================== */
+
+.table-responsive{
+    width:100%;
+    overflow-x:auto;
+    overflow-y:hidden;
+    -webkit-overflow-scrolling:touch;
+}
+
+.table{
+    min-width:1800px;
+}
+
+/* ==========================================
+   Mobile Responsive
+========================================== */
+
+@media(max-width:768px){
+
+    .table td:last-child{
+        min-width:220px;
+    }
+
+    .table td:last-child .btn{
+        width:100%;
+        margin-bottom:6px;
+    }
+
+}
 
 /* ==========================================
    Print Only
 ========================================== */
 
-body{
-    width:80mm;
-    margin:0 auto;
-    padding:5px;
-    font-family:Arial;
-}
+@media print{
 
-@page{
-    size:80mm auto;
-    margin:5mm;
-}
+    body{
+        width:80mm;
+        margin:0;
+        padding:5mm;
+        font-family:Arial;
+    }
 
-table{
-    width:100%;
-}
+    @page{
+        size:80mm auto;
+        margin:5mm;
+    }
 
-td{
-    padding:3px 0;
-    vertical-align:top;
-}
+    #printSection table{
+        width:100%;
+    }
 
-img{
-    display:block;
-    margin:auto;
+    #printSection td{
+        padding:3px 0;
+        vertical-align:top;
+    }
+
+    #printSection img{
+        display:block;
+        margin:auto;
+    }
+
 }

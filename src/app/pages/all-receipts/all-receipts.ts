@@ -11,7 +11,7 @@ import { Navbar } from '../../components/navbar/navbar';
 import { ApiService } from '../../services/api';
 
 import * as XLSX from 'xlsx';
-import { saveAs } from 'file-saver';
+
 
 @Component({
   selector: 'app-all-receipts',
@@ -325,7 +325,7 @@ getPriorityClass(priority: string): string {
   this.selectedReceipt = receipt;
 
   QRCode.toDataURL(
-  `http://localhost:4200/search-receipt?serial=${receipt.serialNumber}`
+  `https://kruti-electronics.netlify.app/search-receipt?serial=${receipt.serialNumber}`
 ).then((url: string) => {
 
   this.qrCode = url;
@@ -435,7 +435,7 @@ getPriorityClass(priority: string): string {
 
     this.selectedReceipt = receipt;
     QRCode.toDataURL(
-  `http://localhost:4200/search-receipt?serial=${receipt.serialNumber}`
+  `https://kruti-electronics.netlify.app/search-receipt?serial=${receipt.serialNumber}`
 ).then((url: string) => {
 
   this.qrCode = url;

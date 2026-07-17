@@ -16,6 +16,21 @@ import { Auth } from '../../services/auth';
 })
 export class Navbar {
 
+   menuOpen=false;
+
+toggleMenu(): void {
+
+    this.menuOpen = !this.menuOpen;
+
+}
+
+closeMenu(): void {
+
+    this.menuOpen = false;
+
+
+}
+
   constructor(
 
     private router: Router,
@@ -39,12 +54,13 @@ export class Navbar {
     }
 
     // Clear Token
-    this.auth.logout();
+   this.auth.logout();
 
-    // Redirect Login
-    this.router.navigate([
-      '/kruti-admin-login-92731'
-    ]);
+this.closeMenu();
+
+this.router.navigate([
+'/kruti-admin-login-92731'
+]);
 
   }
 
