@@ -6,7 +6,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class ApiService {
 
-  private apiUrl = 'http://localhost:3000/api';
+  private apiUrl = 'https://kruti-electronics-backend.onrender.com/api';
 
   constructor(private http: HttpClient) {}
 
