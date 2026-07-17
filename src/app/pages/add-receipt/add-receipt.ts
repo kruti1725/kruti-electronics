@@ -244,7 +244,7 @@ Status : ${form.status}
 
 🔍 Check Repair Status
 
-https://service.krutielectronics.in/search-receipt?serial=${form.serialNumber}
+https://kruti-electronics.netlify.app/search-receipt?serial=${form.serialNumber}
 
 ━━━━━━━━━━━━━━━━━━━━━━
 
