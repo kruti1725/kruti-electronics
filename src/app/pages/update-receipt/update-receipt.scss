@@ -1,0 +1,158 @@
+/* ===============================
+   Page Background
+================================= */
+
+.container-fluid{
+    background:#f5f6fa;
+    min-height:100vh;
+}
+
+/* ===============================
+   Card
+================================= */
+
+.receipt-card{
+
+    border-radius:15px;
+
+    overflow:hidden;
+
+    background:#fff;
+
+}
+
+/* ===============================
+   Header
+================================= */
+
+.card-header{
+
+    border:none;
+
+    padding:18px 25px;
+
+}
+
+/* ===============================
+   Section Title
+================================= */
+
+.section-title{
+
+    font-size:20px;
+
+    font-weight:700;
+
+    color:#dc3545;
+
+    margin-bottom:20px;
+
+}
+
+/* ===============================
+   Labels
+================================= */
+
+.form-label{
+
+    font-weight:600;
+
+    color:#444;
+
+}
+
+/* ===============================
+   Inputs
+================================= */
+
+.form-control,
+.form-select{
+
+    height:48px;
+
+    border-radius:10px;
+
+    border:1px solid #dcdcdc;
+
+    transition:.3s;
+
+}
+
+textarea.form-control{
+
+    height:auto;
+
+    resize:none;
+
+}
+
+/* ===============================
+   Focus
+================================= */
+
+.form-control:focus,
+.form-select:focus{
+
+    border-color:#dc3545;
+
+    box-shadow:0 0 8px rgba(220,53,69,.20);
+
+}
+
+/* ===============================
+   Buttons
+================================= */
+
+.btn{
+
+    min-width:140px;
+
+    border-radius:10px;
+
+    font-weight:600;
+
+}
+
+.btn-warning{
+
+    color:#fff;
+
+}
+
+.btn-warning:hover{
+
+    background:#d39e00;
+
+}
+
+.btn-secondary:hover{
+
+    background:#555;
+
+}
+
+/* ===============================
+   Responsive
+================================= */
+
+@media(max-width:768px){
+
+.card-body{
+
+padding:20px;
+
+}
+
+.btn{
+
+width:100%;
+
+}
+
+.d-flex{
+
+flex-direction:column;
+
+}
+
+}

@@ -1,0 +1,67 @@
+.customer-navbar{
+
+    background:#dc3545;
+
+    box-shadow:0 4px 15px rgba(0,0,0,.15);
+
+}
+
+.navbar-brand{
+
+    color:#fff;
+
+    font-size:28px;
+
+    font-weight:700;
+
+}
+
+.navbar-brand:hover{
+
+    color:#fff;
+
+}
+
+.nav-link{
+
+    color:#fff;
+
+    font-weight:600;
+
+    font-size:17px;
+
+    padding:8px 20px;
+
+    border-radius:8px;
+
+    transition:.3s;
+
+}
+
+.nav-link:hover{
+
+    background:#fff;
+
+    color:#dc3545;
+
+}
+
+.nav-link.active{
+
+    background:#fff;
+
+    color:#dc3545 !important;
+
+}
+
+.navbar-toggler{
+
+    border:none;
+
+}
+
+.navbar-toggler:focus{
+
+    box-shadow:none;
+
+}

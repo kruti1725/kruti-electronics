@@ -1,0 +1,184 @@
+/* Page Background */
+
+body{
+    background:#f5f6fa;
+}
+
+
+/* Main Card */
+
+.receipt-card{
+
+    border-radius:18px;
+
+    overflow:hidden;
+
+    background:#fff;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+
+}
+
+/* Header */
+
+.card-header{
+
+    padding:18px 25px;
+
+    border:none;
+
+}
+
+.card-header h3{
+
+    font-weight:700;
+
+    margin:0;
+
+}
+
+/* Section Heading */
+
+.section-title{
+
+    font-weight:700;
+
+    color:#dc3545;
+
+    margin-bottom:20px;
+
+    border-left:5px solid #dc3545;
+
+    padding-left:12px;
+
+}
+
+/* Label */
+
+.form-label{
+
+    font-weight:600;
+
+    color:#444;
+
+}
+
+/* Input */
+
+.form-control,
+.form-select{
+
+    height:50px;
+
+    border-radius:12px;
+
+    border:1px solid #dcdcdc;
+
+    transition:.3s;
+
+    box-shadow:none;
+
+}
+
+/* Textarea */
+
+textarea.form-control{
+
+    height:auto;
+
+    resize:none;
+
+}
+
+/* Focus */
+
+.form-control:focus,
+.form-select:focus{
+
+    border-color:#dc3545;
+
+    box-shadow:0 0 0 .18rem rgba(220,53,69,.20);
+
+}
+
+/* Buttons */
+
+.btn{
+
+    border-radius:12px;
+
+    padding:10px 28px;
+
+    font-weight:600;
+
+}
+
+.btn-danger{
+
+    background:#dc3545;
+
+    border:none;
+
+}
+
+.btn-danger:hover{
+
+    background:#bb2d3b;
+
+}
+
+.btn-secondary{
+
+    border:none;
+
+}
+
+/* Divider */
+
+hr{
+
+    margin:35px 0;
+
+    opacity:.15;
+
+}
+
+/* Mobile */
+
+@media(max-width:768px){
+
+    .card-header{
+
+        text-align:center;
+
+    }
+
+    .card-header h3{
+
+        font-size:22px;
+
+    }
+
+    .section-title{
+
+        font-size:20px;
+
+    }
+
+    .btn{
+
+        width:100%;
+
+        margin-top:10px;
+
+    }
+
+    .text-end{
+
+        display:flex;
+
+        flex-direction:column;
+
+    }
+
+}

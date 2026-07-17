@@ -1,0 +1,116 @@
+<nav class="navbar navbar-expand-lg navbar-dark custom-navbar">
+
+    <div class="container-fluid">
+
+        <!-- Logo -->
+        <a
+            class="navbar-brand fw-bold"
+            routerLink="/dashboard">
+
+            Kruti Electronics
+
+        </a>
+
+        <!-- Mobile Menu -->
+        <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarMenu">
+
+            <span class="navbar-toggler-icon"></span>
+
+        </button>
+
+        <div
+            class="collapse navbar-collapse"
+            id="navbarMenu">
+
+            <ul class="navbar-nav ms-auto align-items-lg-center">
+
+                <!-- Dashboard -->
+                <li
+                    class="nav-item"
+                    *ngIf="isLoggedIn()">
+
+                    <a
+                        class="nav-link"
+                        routerLink="/dashboard"
+                        routerLinkActive="active">
+
+                        🏠 Dashboard
+
+                    </a>
+
+                </li>
+
+                <!-- Add Receipt -->
+                <li
+                    class="nav-item"
+                    *ngIf="isLoggedIn()">
+
+                    <a
+                        class="nav-link"
+                        routerLink="/add-receipt"
+                        routerLinkActive="active">
+
+                        ➕ Add Receipt
+
+                    </a>
+
+                </li>
+
+                <!-- All Receipts -->
+                <li
+                    class="nav-item"
+                    *ngIf="isLoggedIn()">
+
+                    <a
+                        class="nav-link"
+                        routerLink="/all-receipts"
+                        routerLinkActive="active">
+
+                        📋 All Receipts
+
+                    </a>
+
+                </li>
+
+                <!-- Login -->
+                <li
+                    class="nav-item"
+                    *ngIf="!isLoggedIn()">
+
+                    <a
+                        class="nav-link"
+                        routerLink="/kruti-admin-login-92731">
+
+                        🔐 Admin Login
+
+                    </a>
+
+                </li>
+
+                <!-- Logout -->
+                <li
+                    class="nav-item"
+                    *ngIf="isLoggedIn()">
+
+                    <a
+                        class="nav-link logout"
+                        href="javascript:void(0)"
+                        (click)="logout()">
+
+                        🚪 Logout
+
+                    </a>
+
+                </li>
+
+            </ul>
+
+        </div>
+
+    </div>
+
+</nav>

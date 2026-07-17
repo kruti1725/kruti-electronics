@@ -1,0 +1,379 @@
+<app-navbar></app-navbar>
+
+<form [formGroup]="receiptForm" (ngSubmit)="saveReceipt()">
+
+<div class="container-fluid py-4">
+
+    <div class="card shadow-lg border-0 receipt-card">
+
+        <!-- Header -->
+
+        <div class="card-header bg-danger text-white py-3">
+
+            <h3 class="mb-0 fw-bold">
+                🧾 Add New Receipt
+            </h3>
+
+        </div>
+
+        <div class="card-body">
+
+            <!-- Receipt Information -->
+
+            <h5 class="section-title">
+                Receipt Information
+            </h5>
+
+            <div class="row">
+
+                <!-- Serial Number -->
+
+                <div class="col-lg-6 mb-3">
+
+                    <label class="form-label fw-semibold">
+                        Serial Number <span class="text-danger">*</span>
+                    </label>
+
+                    <input
+                        #serialInput
+                        type="text"
+                        class="form-control"
+                        formControlName="serialNumber"
+                        placeholder="Enter Serial Number">
+
+                </div>
+
+                <!-- Received Date -->
+
+                <div class="col-lg-6 mb-3">
+
+                    <label class="form-label fw-semibold">
+                        Received Date
+                        <small class="text-muted">(Optional)</small>
+                    </label>
+
+                    <input
+                        type="date"
+                        class="form-control"
+                        formControlName="receivedDate">
+
+                </div>
+
+                <!-- Customer Name -->
+
+                <div class="col-lg-6 mb-3">
+
+                    <label class="form-label fw-semibold">
+                        Customer Name <span class="text-danger">*</span>
+                    </label>
+
+                    <input
+                        type="text"
+                        class="form-control"
+                        formControlName="customerName"
+                        placeholder="Enter Customer Name">
+
+                </div>
+
+                <!-- Mobile -->
+
+                <div class="col-lg-6 mb-3">
+
+                    <label class="form-label fw-semibold">
+                        Mobile Number <span class="text-danger">*</span>
+                    </label>
+
+                    <input
+                        type="text"
+                        maxlength="10"
+                        class="form-control"
+                        formControlName="mobileNumber"
+                        placeholder="Enter Mobile Number">
+
+                </div>
+
+                <!-- Repair By -->
+
+<div class="col-lg-6 mb-3">
+
+    <label class="form-label fw-semibold">
+        Repair By
+        <small class="text-muted">(Optional)</small>
+    </label>
+
+    <select
+        class="form-select"
+        formControlName="repairBy">
+
+        <option value="">
+            Select Technician
+        </option>
+
+        <option *ngFor="let tech of technicians" [value]="tech">
+            {{ tech }}
+        </option>
+
+    </select>
+
+</div>
+
+            </div>
+
+            <hr>
+
+            <!-- TV Information -->
+
+            <h5 class="section-title">
+                TV Information
+            </h5>
+
+            <div class="row">
+
+                <!-- Brand -->
+
+                <div class="col-lg-6 mb-3">
+
+                    <label class="form-label fw-semibold">
+                        Brand <span class="text-danger">*</span>
+                    </label>
+
+                    <input
+    type="text"
+    class="form-control"
+    formControlName="brand"
+    placeholder="Enter TV Brand">
+
+                </div>
+
+                <div class="col-md-6">
+
+<label>
+
+Model Number (Optional)
+
+</label>
+
+<input
+
+type="text"
+
+class="form-control"
+
+placeholder="Enter TV Model Number"
+
+formControlName="modelNumber">
+
+</div>
+
+                <!-- Estimated Cost -->
+
+                  <div class="col-lg-6 mb-3">
+
+                       <label class="form-label fw-semibold">
+                               Estimated Cost (Optional)
+                       </label>
+
+                    <input
+                           type="number"
+                          class="form-control"
+                           formControlName="estimatedCost"
+                          placeholder="Enter Estimated Cost">
+
+                  </div>
+
+                  <div class="col-lg-6 mb-3">
+
+<label class="form-label fw-semibold">
+
+Actual Cost (Optional)
+
+</label>
+
+<input
+
+type="number"
+
+class="form-control"
+
+formControlName="cost"
+
+placeholder="Enter Actual Cost">
+
+</div>
+
+                <!-- Status -->
+
+<div class="col-lg-6 mb-3">
+
+    <label class="form-label fw-semibold">
+
+        Status
+
+    </label>
+
+    <select
+        class="form-select"
+        formControlName="status">
+
+        <option value="Pending">Pending</option>
+
+        <option value="Under Repair">Under Repair</option>
+
+        <option value="Ready">Ready</option>
+
+        <option value="Delivered">Delivered</option>
+
+    </select>
+
+</div>
+
+<!-- Priority -->
+
+<div class="col-lg-4 mb-3">
+
+    <label class="form-label fw-semibold">
+
+        Priority
+
+        <small class="text-muted">(Optional)</small>
+
+    </label>
+
+    <select
+        class="form-select"
+        formControlName="priority">
+
+        <option value="Normal">Normal</option>
+
+        <option value="High">High</option>
+
+        <option value="Urgent">Urgent</option>
+
+    </select>
+
+</div>
+
+<!-- Rack No -->
+
+<div class="col-lg-4 mb-3">
+
+    <label class="form-label fw-semibold">
+
+        Rack No.
+
+        <small class="text-muted">(Optional)</small>
+
+    </label>
+
+    <input
+        type="text"
+        class="form-control"
+        formControlName="rackNo"
+        placeholder="Example: A-12">
+
+</div>
+
+<!-- Payment Method -->
+
+<div class="col-lg-4 mb-3">
+
+    <label class="form-label fw-semibold">
+
+        Payment Method
+
+        <small class="text-muted">(Optional)</small>
+
+    </label>
+
+    <select
+        class="form-select"
+        formControlName="paymentMethod">
+
+        <option value="Pending">Pending</option>
+
+        <option value="Cash">Cash</option>
+
+        <option value="UPI">UPI</option>
+
+        <option value="Card">Card</option>
+
+        <option value="Bank Transfer">Bank Transfer</option>
+
+    </select>
+
+</div>
+                <!-- Complaint -->
+
+                <div class="col-lg-12 mb-3">
+
+                    <label class="form-label fw-semibold">
+                        Complaint
+                        <small class="text-muted">(Optional)</small>
+                    </label>
+
+                    <textarea
+                        rows="3"
+                        class="form-control"
+                        formControlName="complaint"
+                        placeholder="Complaint"></textarea>
+
+                </div>
+
+                <!-- Remarks -->
+
+                <div class="col-lg-12 mb-3">
+
+                    <label class="form-label fw-semibold">
+                        Remarks
+                        <small class="text-muted">(Optional)</small>
+                    </label>
+
+                    <textarea
+                        rows="3"
+                        class="form-control"
+                        formControlName="remarks"
+                        placeholder="Remarks"></textarea>
+
+                </div>
+
+            </div>
+
+            <hr>
+
+            <!-- Buttons -->
+
+            <div class="d-flex justify-content-end gap-2">
+
+                <button
+                    type="button"
+                    class="btn btn-secondary px-4"
+                    (click)="resetForm()"
+                    [disabled]="loading">
+
+                    Reset
+
+                </button>
+
+                <button
+                    type="submit"
+                    class="btn btn-danger px-4"
+                    [disabled]="loading">
+
+                    <span
+                        *ngIf="loading"
+                        class="spinner-border spinner-border-sm me-2">
+                    </span>
+
+                    {{ loading ? 'Saving...' : 'Save Receipt' }}
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+</form>

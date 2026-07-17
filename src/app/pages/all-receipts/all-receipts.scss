@@ -1,0 +1,411 @@
+/* ===========================
+   Page Background
+=========================== */
+
+.container-fluid{
+    background:#f5f6fa;
+    min-height:100vh;
+    padding:30px;
+}
+
+/* ===========================
+   Heading
+=========================== */
+
+h2{
+    font-weight:700;
+    color:#dc3545;
+}
+
+.text-muted{
+    font-size:15px;
+}
+
+/* ===========================
+   Card
+=========================== */
+
+.card{
+    border:none;
+    border-radius:15px;
+    box-shadow:0 4px 15px rgba(0,0,0,.08);
+}
+
+/* ===========================
+   Search Box
+=========================== */
+
+.form-control{
+
+    height:48px;
+
+    border-radius:10px;
+
+    border:1px solid #ddd;
+
+    transition:.3s;
+
+}
+
+.form-control:focus{
+
+    border-color:#dc3545;
+
+    box-shadow:0 0 0 .15rem rgba(220,53,69,.20);
+
+}
+
+/* ===========================
+   Table
+=========================== */
+
+.table{
+
+    background:white;
+
+    border-radius:15px;
+
+    overflow:hidden;
+
+}
+
+.table thead{
+
+    background:#dc3545;
+
+    color:white;
+
+}
+
+.table thead th{
+
+    border:none;
+
+    padding:16px;
+
+    white-space:nowrap;
+
+    font-size:15px;
+
+    font-weight:600;
+
+}
+
+.table tbody td{
+
+    padding:15px;
+
+    vertical-align:middle;
+
+    white-space:nowrap;
+
+}
+
+.table tbody tr{
+
+    transition:.3s;
+
+}
+
+.table tbody tr:hover{
+
+    background:#fff3f3;
+
+}
+
+/* ===========================
+   Status Badge
+=========================== */
+
+.badge{
+
+    padding:8px 14px;
+
+    border-radius:20px;
+
+    font-size:13px;
+
+    font-weight:600;
+
+}
+
+/* ===========================
+   Buttons
+=========================== */
+
+.btn{
+
+    border-radius:8px;
+
+    font-weight:500;
+
+}
+
+.btn-sm{
+
+    padding:6px 14px;
+
+}
+
+/* ===========================
+   Action Buttons
+=========================== */
+
+.btn-primary{
+
+    background:#0d6efd;
+
+    border:none;
+
+}
+
+.btn-warning{
+
+    border:none;
+
+    color:white;
+
+}
+
+.btn-danger{
+
+    border:none;
+
+}
+
+/* ===========================
+   Spinner
+=========================== */
+
+.spinner-border{
+
+    width:3rem;
+
+    height:3rem;
+
+}
+
+/* ===========================
+   Empty Record
+=========================== */
+
+tbody tr td[colspan]{
+
+    padding:40px;
+
+    font-size:18px;
+
+}
+
+/* ===========================
+   Responsive
+=========================== */
+
+@media(max-width:992px){
+
+    .container-fluid{
+
+        padding:20px;
+
+    }
+
+    h2{
+
+        font-size:24px;
+
+    }
+
+    .btn-sm{
+
+        margin-bottom:5px;
+
+        width:100%;
+
+    }
+
+}
+
+@media(max-width:768px){
+
+    .container-fluid{
+
+        padding:15px;
+
+    }
+
+    h2{
+
+        font-size:22px;
+
+    }
+
+    .table{
+
+        font-size:14px;
+
+    }
+
+    .table thead th{
+
+        padding:12px;
+
+    }
+
+    .table tbody td{
+
+        padding:12px;
+
+    }
+
+}
+
+@media(max-width:576px){
+
+    h2{
+
+        font-size:20px;
+
+    }
+
+    .form-control{
+
+        font-size:14px;
+
+    }
+
+}
+/* ==========================================
+   Print Buttons
+========================================== */
+
+.btn-primary{
+    border:none;
+}
+
+.btn-success{
+    border:none;
+}
+
+/* ==========================================
+   Printable Receipt
+========================================== */
+
+#printSection{
+
+    width:210mm;
+
+    min-height:297mm;
+
+    background:#fff;
+
+    color:#000;
+
+    padding:30px;
+
+    font-family:Arial, Helvetica, sans-serif;
+
+}
+
+#printSection h2{
+
+    text-align:center;
+
+    color:#dc3545;
+
+    font-size:32px;
+
+    margin-bottom:5px;
+
+}
+
+#printSection h4{
+
+    text-align:center;
+
+    margin-bottom:20px;
+
+    color:#555;
+
+}
+
+#printSection hr{
+
+    border:1px solid #dc3545;
+
+    margin:20px 0;
+
+}
+
+#printSection table{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+}
+
+#printSection td{
+
+    border:1px solid #999;
+
+    padding:10px;
+
+    font-size:15px;
+
+}
+
+#printSection td:first-child{
+
+    width:35%;
+
+    background:#f8f9fa;
+
+    font-weight:600;
+
+}
+
+.signature-table{
+
+    margin-top:60px;
+
+}
+
+.signature-table td{
+
+    border:none !important;
+
+    text-align:center;
+
+    padding-top:40px;
+
+}
+
+/* ==========================================
+   Print Only
+========================================== */
+
+body{
+    width:80mm;
+    margin:0 auto;
+    padding:5px;
+    font-family:Arial;
+}
+
+@page{
+    size:80mm auto;
+    margin:5mm;
+}
+
+table{
+    width:100%;
+}
+
+td{
+    padding:3px 0;
+    vertical-align:top;
+}
+
+img{
+    display:block;
+    margin:auto;
+}

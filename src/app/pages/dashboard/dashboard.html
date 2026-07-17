@@ -1,0 +1,90 @@
+<!-- Top Navbar -->
+<app-navbar></app-navbar>
+
+<!-- Main Content -->
+
+<div class="container-fluid">
+
+    <div class="p-4">
+
+        <h1 class="mb-4 fw-bold">Dashboard</h1>
+
+        <div class="row g-4">
+
+            <!-- Total Receipts -->
+
+            <div class="col-lg-3 col-md-6">
+
+                <div class="card bg-primary text-white shadow dashboard-card">
+
+                    <div class="card-body">
+
+                        <h5>Total Receipts</h5>
+
+                        <h1>{{ dashboard.totalReceipts }}</h1>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- Pending -->
+
+            <div class="col-lg-3 col-md-6">
+
+                <div class="card bg-warning text-dark shadow dashboard-card">
+
+                    <div class="card-body">
+
+                        <h5>Pending</h5>
+
+                        <h1>{{ dashboard.pending }}</h1>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- Under Repair -->
+
+            <div class="col-lg-3 col-md-6">
+
+                <div class="card bg-info text-white shadow dashboard-card">
+
+                    <div class="card-body">
+
+                        <h5>Under Repair</h5>
+
+                        <h1>{{ dashboard.underRepair }}</h1>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- Delivered -->
+
+            <div class="col-lg-3 col-md-6">
+
+                <div class="card bg-success text-white shadow dashboard-card">
+
+                    <div class="card-body">
+
+                        <h5>Delivered</h5>
+
+                        <h1>{{ dashboard.delivered }}</h1>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

@@ -1,0 +1,626 @@
+<app-navbar></app-navbar>
+
+<div class="container-fluid mt-4">
+
+    <!-- Page Header -->
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+
+        <div>
+
+            <h2 class="fw-bold text-danger mb-1">
+                All Receipts
+            </h2>
+
+            <p class="text-muted mb-0">
+                Total Receipts :
+                <strong>{{ receipts.length }}</strong>
+            </p>
+
+        </div>
+
+        <button
+class="btn btn-success me-2"
+(click)="exportExcel()">
+
+📊 Export Excel
+
+</button>
+
+        <button
+            class="btn btn-danger"
+            routerLink="/add-receipt">
+
+            + Add Receipt
+
+        </button>
+
+    </div>
+
+    <!-- Search -->
+
+    <div class="card shadow-sm border-0 mb-4">
+
+        <div class="card-body">
+
+            <div class="row">
+
+                <div class="col-md-6">
+
+                    <input
+                        type="text"
+                        class="form-control"
+                        placeholder="Search by Serial No / Customer / Mobile"
+                        [(ngModel)]="searchText"
+                        (input)="filterReceipts()">
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="row mt-3">
+
+<div class="col-md-3">
+
+<select
+class="form-select"
+[(ngModel)]="priorityFilter"
+(change)="filterReceipts()">
+
+<option value="">All Priority</option>
+
+<option value="Normal">Normal</option>
+
+<option value="High">High</option>
+
+<option value="Urgent">Urgent</option>
+
+</select>
+
+</div>
+
+<div class="col-md-3">
+
+<select
+class="form-select"
+[(ngModel)]="daysFilter"
+(change)="filterReceipts()">
+
+<option value="">All Days</option>
+
+<option value="0-3">0 - 3 Days</option>
+
+<option value="4+">4+ Days</option>
+
+</select>
+
+</div>
+
+<div class="col-md-3">
+
+<select
+class="form-select"
+[(ngModel)]="statusFilter"
+(change)="filterReceipts()">
+
+<option value="All">All Status</option>
+
+<option value="Pending">Pending</option>
+
+<option value="Under Repair">Under Repair</option>
+
+<option value="Ready">Ready</option>
+
+<option value="Delivered">Delivered</option>
+
+</select>
+
+</div>
+
+</div>
+<br>
+
+
+    <!-- Loading -->
+
+    <div
+        class="text-center py-5"
+        *ngIf="loading">
+
+        <div class="spinner-border text-danger"></div>
+
+        <h5 class="mt-3">
+            Loading Receipts...
+        </h5>
+
+    </div>
+
+    <!-- Table -->
+
+    <div
+        class="table-responsive"
+        *ngIf="!loading">
+
+        <table class="table table-hover align-middle">
+
+            <thead class="table-danger">
+
+                <tr>
+
+                    <th>#</th>
+
+                    <th>Serial No</th>
+
+                    <th>Customer</th>
+
+                    <th>Mobile</th>
+
+                    <th>Brand</th>
+
+                    <th>Model No</th>
+
+                    <th>Repair By</th>
+
+                    <th>Priority</th>
+
+                    <th>Rack No.</th>
+
+                    <th>Payment</th>
+
+                    <th>Days</th>
+
+                    <th>Est. Cost</th>
+
+                    <th>Actual Cost</th>
+
+                    <th>Status</th>
+
+                    <th>Received Date</th>
+
+                    <th>Remarks</th>
+
+                    <th class="text-center">
+                        Action
+                    </th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                <tr
+    *ngFor="let receipt of filteredReceipts; let i=index"
+    [ngClass]="{
+      'table-danger': isOldReceipt(receipt)
+    }">
+
+                    <td>{{ i + 1 }}</td>
+
+                    <td>
+
+                        <strong>
+
+                            {{ receipt.serialNumber }}
+
+                        </strong>
+
+                    </td>
+
+                    <td>
+
+                        {{ receipt.customerName }}
+
+                    </td>
+
+                    <td>
+
+                        {{ receipt.mobileNumber }}
+
+                    </td>
+
+                    <td>
+
+                        {{ receipt.tvs[0]?.brand }}
+
+                    </td>
+
+                    <td>
+
+{{receipt.tvs[0]?.modelNumber || '-'}}
+
+</td>
+
+                    <td>
+
+                        {{ receipt.repairBy || '-' }}
+
+                    </td>
+
+                    <td>
+
+<span
+class="badge"
+
+[ngClass]="getPriorityClass(receipt.tvs[0]?.priority)">
+
+{{ receipt.tvs[0]?.priority || 'Normal' }}
+
+</span>
+
+</td>
+
+<td>
+
+{{ receipt.tvs[0]?.rackNo || '-' }}
+
+</td>
+
+<td>
+
+{{ receipt.tvs[0]?.paymentMethod || 'Pending' }}
+
+</td>
+
+<td>
+
+<span
+class="badge"
+
+[ngClass]="{
+
+'bg-success':getDays(receipt.receivedDate)<=3,
+
+'bg-warning text-dark':
+getDays(receipt.receivedDate)>3
+&&
+getDays(receipt.receivedDate)<=6,
+
+'bg-danger':
+getDays(receipt.receivedDate)>=7
+
+}">
+
+{{ getDays(receipt.receivedDate) }}
+
+Days
+
+</span>
+
+</td>
+
+
+                    <td>
+
+₹ {{ receipt.tvs[0]?.estimatedCost || 0 }}
+
+</td>
+
+<td>
+
+₹ {{ receipt.tvs[0]?.cost || 0 }}
+
+</td>
+
+                    <td>
+
+                        <span
+
+                            class="badge"
+
+                            [ngClass]="{
+
+                            'bg-warning text-dark':
+                            receipt.tvs[0]?.status=='Pending',
+
+                            'bg-info':
+                            receipt.tvs[0]?.status=='Under Repair',
+
+                            'bg-success':
+                            receipt.tvs[0]?.status=='Ready',
+
+                            'bg-dark':
+                            receipt.tvs[0]?.status=='Delivered'
+
+                            }">
+
+                            {{ receipt.tvs[0]?.status }}
+
+                        </span>
+
+                    </td>
+
+                    <td>
+
+<!-- Date -->
+
+<span *ngIf="receipt.itemReceivedDate">
+
+{{receipt.itemReceivedDate | date:'dd-MM-yyyy'}}
+
+</span>
+
+<!-- Yes Button -->
+
+<button
+
+class="btn btn-success btn-sm"
+
+*ngIf="
+
+receipt.customerReceived
+
+&&
+
+!receipt.itemReceivedDate
+
+"
+
+(click)="confirmReceived(receipt.serialNumber)">
+
+YES
+
+</button>
+
+<!-- No -->
+
+<span
+
+*ngIf="
+
+!receipt.customerReceived
+
+&&
+
+!receipt.itemReceivedDate
+
+">
+
+NO
+
+</span>
+
+</td>
+
+                    <td
+  style="max-width:220px;"
+  class="text-truncate"
+  [title]="receipt.remarks">
+
+  {{ receipt.remarks || '-' }}
+
+</td>
+
+                    <td class="text-center">
+
+                        <button
+                            class="btn btn-warning btn-sm me-2 mb-1"
+                            (click)="updateReceipt(receipt.serialNumber)">
+
+                            ✏️ Update
+
+                        </button>
+
+                        <button
+                            class="btn btn-primary btn-sm me-2 mb-1"
+                            (click)="printReceipt(receipt)">
+
+                            🖨️ Print
+
+                        </button>
+
+                        <button
+                            class="btn btn-success btn-sm me-2 mb-1"
+                            (click)="downloadPDF(receipt)">
+
+                            📄 PDF
+
+                        </button>
+
+                        <button
+                            class="btn btn-danger btn-sm mb-1"
+                            (click)="deleteReceipt(receipt.serialNumber)">
+
+                            🗑 Delete
+
+                        </button>
+
+                    </td>
+
+                </tr>
+
+                <tr *ngIf="filteredReceipts.length === 0">
+
+                    <td
+                        colspan="10"
+                        class="text-center text-muted py-5">
+
+                        No Receipt Found
+
+                    </td>
+
+                </tr>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+<!-- =====================================================
+     Hidden Print Section (80mm Thermal)
+===================================================== -->
+
+<div
+#printSection
+id="printSection"
+style="
+position:absolute;
+left:-9999px;
+top:0;
+width:280px;
+padding:10px;
+background:#fff;
+font-family:Arial,Helvetica,sans-serif;
+font-size:13px;
+color:#000;">
+
+<div style="text-align:center;">
+
+<h2 style="margin:0;color:#d32f2f;">
+KRUTI ELECTRONICS
+</h2>
+
+<div style="font-size:14px;font-weight:bold;">
+TV Repair Service Center
+</div>
+
+<div style="font-size:12px;">
+Vapi, Gujarat
+</div>
+
+<div style="margin-top:5px;">
+--------------------------------
+</div>
+
+</div>
+
+<table
+style="
+width:100%;
+font-size:13px;
+margin-top:8px;">
+
+<tr>
+<td><b>Receipt No</b></td>
+<td style="text-align:right;">
+{{selectedReceipt?.serialNumber}}
+</td>
+</tr>
+
+<tr>
+<td><b>Customer</b></td>
+<td style="text-align:right;">
+{{selectedReceipt?.customerName}}
+</td>
+</tr>
+
+<tr>
+<td><b>Mobile</b></td>
+<td style="text-align:right;">
+{{selectedReceipt?.mobileNumber}}
+</td>
+</tr>
+
+<tr>
+<td><b>Brand</b></td>
+<td style="text-align:right;">
+{{selectedReceipt?.tvs[0]?.brand}}
+</td>
+</tr>
+
+<tr>
+<td><b>Estimated</b></td>
+<td style="text-align:right;">
+₹ {{selectedReceipt?.tvs[0]?.estimatedCost || 0}}
+</td>
+</tr>
+
+</table>
+
+<div style="text-align:center;margin:10px 0;">
+--------------------------------
+</div>
+
+<div style="text-align:center;font-weight:bold;">
+Scan To Check
+Repair Status
+</div>
+
+<div style="text-align:center;margin-top:8px;">
+
+<img
+[src]="qrCode"
+width="150"
+height="150">
+
+</div>
+
+<div
+style="
+text-align:center;
+font-size:11px;
+word-break:break-word;
+margin-top:6px;">
+
+https://service.krutielectronics.in/search-receipt?serial={{selectedReceipt?.serialNumber}}
+
+</div>
+
+<div style="text-align:center;margin:10px 0;">
+--------------------------------
+</div>
+
+<div style="font-size:11px;">
+
+<b>IMPORTANT NOTICE</b>
+
+<br><br>
+
+• Collect your repaired TV within <b>20 Days</b>.
+
+<br><br>
+
+• After 20 Days storage charge
+<b>₹300/day</b>.
+
+<br><br>
+
+• After 30 Days company will not be responsible.
+
+</div>
+
+<div style="text-align:center;margin:10px 0;">
+--------------------------------
+</div>
+
+<div
+style="
+display:flex;
+justify-content:space-between;
+font-size:11px;">
+
+<div style="text-align:center;">
+_____________<br>
+Customer
+</div>
+
+<div style="text-align:center;">
+_____________<br>
+Authorized
+</div>
+
+</div>
+
+<div
+style="
+text-align:center;
+margin-top:15px;
+font-weight:bold;
+font-size:12px;">
+
+Thank You
+
+<br>
+
+Visit Again
+
+</div>
+
+</div>

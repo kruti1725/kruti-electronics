@@ -1,0 +1,393 @@
+<app-navbar></app-navbar>
+
+<form [formGroup]="receiptForm" (ngSubmit)="updateReceipt()">
+
+<div class="container-fluid py-4">
+
+    <div class="card shadow-lg border-0 receipt-card">
+
+        <!-- Header -->
+
+        <div class="card-header bg-warning text-dark py-3">
+
+            <h3 class="mb-0 fw-bold">
+                ✏️ Update Receipt
+            </h3>
+
+        </div>
+
+        <div class="card-body">
+
+            <!-- Receipt Information -->
+
+            <h5 class="section-title mb-4">
+                Receipt Information
+            </h5>
+
+            <div class="row">
+
+                <!-- Serial Number -->
+
+                <div class="col-lg-6 mb-3">
+
+                    <label class="form-label fw-semibold">
+
+                        Serial Number
+
+                    </label>
+
+                    <input
+                        type="text"
+                        class="form-control"
+                        [value]="serialNumber"
+                        readonly>
+
+                </div>
+
+                <!-- Received Date -->
+
+                <div class="col-lg-6 mb-3">
+
+                    <label class="form-label">
+
+                        Received Date
+
+                    </label>
+
+                    <input
+                        type="date"
+                        class="form-control"
+                        formControlName="receivedDate">
+
+                </div>
+
+                <!-- Customer -->
+
+                <div class="col-lg-6 mb-3">
+
+                    <label class="form-label">
+
+                        Customer Name
+                        <span class="text-danger">*</span>
+
+                    </label>
+
+                    <input
+                        type="text"
+                        class="form-control"
+                        formControlName="customerName">
+
+                </div>
+
+                <!-- Mobile -->
+
+                <div class="col-lg-6 mb-3">
+
+                    <label class="form-label">
+
+                        Mobile Number
+                        <span class="text-danger">*</span>
+
+                    </label>
+
+                    <input
+                        type="text"
+                        maxlength="10"
+                        class="form-control"
+                        formControlName="mobileNumber">
+
+                </div>
+
+                <!-- Repair By -->
+
+                <div class="col-lg-6 mb-4">
+
+                    <label class="form-label">
+
+                        Repair By
+
+                    </label>
+
+                    <select
+class="form-select"
+formControlName="repairBy">
+
+    <option value="">
+        Select Technician
+    </option>
+
+    <option
+        *ngFor="let tech of technicians"
+        [value]="tech">
+
+        {{ tech }}
+
+    </option>
+
+</select>
+
+                </div>
+
+            </div>
+
+            <hr>
+
+            <!-- TV Information -->
+
+            <h5 class="section-title mb-4">
+
+                TV Information
+
+            </h5>
+
+            <div class="row">
+
+                <!-- Brand -->
+
+                <div class="col-lg-6 mb-3">
+
+                    <label class="form-label">
+
+                        Brand
+
+                    </label>
+
+                    <input
+    type="text"
+    class="form-control"
+    formControlName="brand"
+    placeholder="Enter TV Brand">
+
+                </div>
+
+                <!-- Model Number -->
+
+    <div class="col-md-4 mb-3">
+
+        <label class="form-label">
+
+            Model Number (Optional)
+
+        </label>
+
+        <input
+            type="text"
+            class="form-control"
+            placeholder="Enter Model Number"
+            formControlName="modelNumber">
+
+    </div>
+
+
+                <div class="col-lg-6 mb-3">
+
+    <label class="form-label">
+        Estimated Cost (Optional)
+    </label>
+
+    <input
+        type="number"
+        class="form-control"
+        formControlName="estimatedCost"
+        placeholder="Estimated Cost">
+
+</div>
+
+<div class="col-lg-6 mb-3">
+
+<label class="form-label fw-semibold">
+
+Actual Cost (Optional)
+
+</label>
+
+<input
+
+type="number"
+
+class="form-control"
+
+formControlName="cost"
+
+placeholder="Enter Actual Cost">
+
+</div>
+
+                <!-- Status -->
+
+                <div class="col-lg-6 mb-3">
+
+                    <label class="form-label">
+
+                        Status
+
+                    </label>
+
+                    <select
+                        class="form-select"
+                        formControlName="status">
+
+                        <option>Pending</option>
+
+                        <option>Under Repair</option>
+
+                        <option>Ready</option>
+
+                        <option>Delivered</option>
+
+                    </select>
+
+                </div>
+
+                <!-- Priority -->
+
+<div class="col-lg-4 mb-3">
+
+    <label class="form-label">
+
+        Priority
+        <small class="text-muted">(Optional)</small>
+
+    </label>
+
+    <select
+        class="form-select"
+        formControlName="priority">
+
+        <option value="Normal">Normal</option>
+
+        <option value="High">High</option>
+
+        <option value="Urgent">Urgent</option>
+
+    </select>
+
+</div>
+
+<!-- Rack No -->
+
+<div class="col-lg-4 mb-3">
+
+    <label class="form-label">
+
+        Rack No.
+        <small class="text-muted">(Optional)</small>
+
+    </label>
+
+    <input
+        type="text"
+        class="form-control"
+        formControlName="rackNo"
+        placeholder="Example : A-05">
+
+</div>
+
+<!-- Payment Method -->
+
+<div class="col-lg-4 mb-3">
+
+    <label class="form-label">
+
+        Payment Method
+        <small class="text-muted">(Optional)</small>
+
+    </label>
+
+    <select
+        class="form-select"
+        formControlName="paymentMethod">
+
+        <option value="Pending">Pending</option>
+
+        <option value="Cash">Cash</option>
+
+        <option value="UPI">UPI</option>
+
+        <option value="Card">Card</option>
+
+        <option value="Bank Transfer">Bank Transfer</option>
+
+    </select>
+
+</div>
+
+                <!-- Complaint -->
+
+                <div class="col-lg-12 mb-3">
+
+                    <label class="form-label">
+
+                        Complaint
+
+                    </label>
+
+                    <textarea
+                        rows="3"
+                        class="form-control"
+                        formControlName="complaint">
+
+                    </textarea>
+
+                </div>
+
+                <!-- Remarks -->
+
+                <div class="col-lg-12 mb-4">
+
+                    <label class="form-label">
+
+                        Remarks
+
+                    </label>
+
+                    <textarea
+                        rows="3"
+                        class="form-control"
+                        formControlName="remarks">
+
+                    </textarea>
+
+                </div>
+
+            </div>
+
+            <hr>
+
+            <!-- Buttons -->
+
+            <div class="d-flex justify-content-end gap-2">
+
+                <button
+                    type="button"
+                    class="btn btn-secondary"
+                    (click)="cancel()">
+
+                    Cancel
+
+                </button>
+
+                <button
+                    type="submit"
+                    class="btn btn-warning"
+                    [disabled]="loading">
+
+                    <span
+                        *ngIf="loading"
+                        class="spinner-border spinner-border-sm me-2">
+
+                    </span>
+
+                    {{ loading ? 'Updating...' : 'Update Receipt' }}
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+</form>
