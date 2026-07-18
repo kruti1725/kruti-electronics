@@ -204,23 +204,15 @@ tbody tr td[colspan]{
 @media(max-width:992px){
 
     .container-fluid{
-
         padding:20px;
-
     }
 
     h2{
-
         font-size:24px;
-
     }
 
     .btn-sm{
-
         margin-bottom:5px;
-
-        width:100%;
-
     }
 
 }
@@ -391,9 +383,8 @@ tbody tr td[colspan]{
 }
 
 .table{
-    min-width:1800px;
+    overflow:visible;
 }
-
 /* ==========================================
    Mobile Responsive
 ========================================== */
@@ -401,12 +392,13 @@ tbody tr td[colspan]{
 @media(max-width:768px){
 
     .table td:last-child{
-        min-width:220px;
+        min-width:340px;
     }
 
     .table td:last-child .btn{
-        width:100%;
-        margin-bottom:6px;
+        width:auto;
+        display:inline-block;
+        margin:4px;
     }
 
 }
@@ -444,3 +436,23 @@ tbody tr td[colspan]{
     }
 
 }
+
+/* Action Column */
+.action-column{
+    min-width:340px;
+}
+
+.action-column{
+    display:flex;
+    flex-wrap:wrap;
+    gap:6px;
+    justify-content:center;
+    align-items:center;
+}
+
+.action-column .btn{
+    flex:1 1 45%;
+    min-width:120px;
+    margin:0;
+}
+
